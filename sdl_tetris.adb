@@ -677,7 +677,7 @@ procedure sdl_tetris is
             when  SDL.Events.Keyboards.Code_Escape =>
                curGameMode := STAND_BY;
                processEvent := processStandByEvent'Access;
-            when SDL.Events.Keyboards.Code_Return =>
+            when SDL.Events.Keyboards.Code_Return | SDL.Events.Keyboards.Code_KP_Enter =>
                saveHighScores("HighScores.txt");
                curGameMode := STAND_BY;
                processEvent := processStandByEvent'Access;
