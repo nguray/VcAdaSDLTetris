@@ -1,0 +1,37 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "gprbuild",
+			"projectFile": "${config:ada.projectFile}",
+			"problemMatcher": [
+				"$ada"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"label": "ada: Build current project"
+		},
+		{
+			"type": "gprclean",
+			"projectFile": "${config:ada.projectFile}",
+			"problemMatcher": [
+				"$ada"
+			],
+			"group": "build",
+			"label": "ada: Clean current project"
+		},
+		{
+			"label": "Build SDL windows",
+			"type": "shell",
+			"command": "gprbuild -p -XSDL_MODE=debug -XSDL_PLATFORM=windows -Psdl_tetris.gpr",
+			"windows": {
+				"command": "gprbuild -p -XSDL_MODE=debug -XSDL_PLATFORM=windows -Psdl_tetris.gpr"
+			},
+			"problemMatcher": [
+				"$ada"
+			]
+		}
+	]
+}
