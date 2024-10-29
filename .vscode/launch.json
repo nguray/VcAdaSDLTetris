@@ -5,13 +5,30 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "type": "gdb",
+            "type": "cppdbg",
+            "name": "Ada: Debug main - sdl_tetris.adb",
             "request": "launch",
-            "name": "Debug",
-            "target": "${workspaceFolder}/sdl_tetris.exe",
+            "targetArchitecture": "x64",
             "cwd": "${workspaceFolder}",
-            "valuesFormatting": "parseText",
-            "preLaunchTask": "ada: Build current project",
+            "program": "${workspaceFolder}/sdl_tetris",
+            "stopAtEntry": false,
+            "externalConsole": false,
+            "args": [],
+            "MIMode": "gdb",
+            "preLaunchTask": "ada: Build main - sdl_tetris.adb",
+            "setupCommands": [
+                {
+                    "description": "Catch all Ada exceptions",
+                    "text": "catch exception",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "miDebuggerPath": "/usr/bin/gdb"
         }
     ]
 }

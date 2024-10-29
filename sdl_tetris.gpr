@@ -1,4 +1,4 @@
-with "..\sdlada\build\gnat\sdlada.gpr";
+with "../sdlada/build/gnat/sdlada.gpr";
 
 project sdl_tetris is
 
@@ -14,7 +14,7 @@ project sdl_tetris is
    package Compiler is
       -- This flag is for strings to be interpreted in UTF-8 by
       -- compiler.
-      for Default_Switches ("Ada") use ("-g","-gnat2012","-gnatwa","-gnatW8","-IC:/msys64/mingw64/include/SDL2", "-Dmain=SDL_main");
+      for Default_Switches ("Ada") use ("-g","-gnat2022","-gnatwa","-gnatW8","-IC:/msys64/mingw64/include/SDL2", "-Dmain=SDL_main");
 
    end Compiler;
 
