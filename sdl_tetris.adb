@@ -67,7 +67,7 @@ procedure sdl_tetris is
 
    subtype Index_highScores is Integer range 1 .. 10;
    type highScores_t is array (Index_highScores) of HightScore;
-   hightScores : highScores_t := (others => ("XXXXXXXX",0));
+   hightScores : highScores_t := [others => ("XXXXXXXX",0)];
 
    startHTicks    : SDL.Timers.Milliseconds := 0;
    startVTicks    : SDL.Timers.Milliseconds := 0;
@@ -104,6 +104,7 @@ procedure sdl_tetris is
    MIX_DEFAULT_FREQUENCY : constant C.int := 44100;
    MIX_DEFAULT_CHANNELS  : constant C.int := 2;
    MIX_DEFAULT_FORMAT    : constant C.unsigned := 16#8010#;
+
 
    type Mix_Music is null record;
    type Mix_Music_Pointer is access all Mix_Music with
@@ -209,14 +210,14 @@ procedure sdl_tetris is
    curTetromino         : Tetromino;
    nextTetromino        : Tetromino;
    
-   board                : Game.arrBoard := (others => 0);
+   board                : Game.arrBoard := [others => 0];
 
    subtype discreteRange_t is Integer range 0..13;
    package RandomInt is new Ada.Numerics.Discrete_Random(discreteRange_t);
    use RandomInt;
    Gen : RandomInt.Generator;
    type tetrisBag_t is array (discreteRange_t) of Integer;
-   tetrisBag : tetrisBag_t := (1,2,3,4,5,6,7,1,2,3,4,5,6,7);
+   tetrisBag : tetrisBag_t := [1,2,3,4,5,6,7,1,2,3,4,5,6,7];
    iTetrisBag : Integer := 14;
 
 
@@ -331,8 +332,8 @@ procedure sdl_tetris is
          ix := Integer((curTetromino.x + 1)/Game.CELL_SIZE);
          iy := Integer((curTetromino.y + 1)/Game.CELL_SIZE);
          for p of curTetromino.v loop
-               x := ix + Integer(p.x);
-               y := iy + Integer(p.y);
+               x := ix + p.x;
+               y := iy + p.y;
                if x>=0 and x<Game.NB_COLUMNS and y>=0 and y<Game.NB_ROWS then
                   board(x + y*Game.NB_COLUMNS) := curTetromino.ityp;
                end if;
@@ -503,7 +504,7 @@ procedure sdl_tetris is
    begin
       curTetromino.ityp := 0;
       nextTetromino.Init(TetrisRandomizer,(Game.NB_COLUMNS+3)*Game.CELL_SIZE,10*Game.CELL_SIZE);
-      board := (others => 0);
+      board := [others => 0];
       curScore := 0;
    end initGame;
 
